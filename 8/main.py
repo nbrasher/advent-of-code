@@ -5,7 +5,8 @@ def get_dist(x, y):
     return (x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2
 
 def main(inp: str):
-    data = [tuple(int(x) for x in line.split(','))
+    data = [
+        tuple(int(x) for x in line.split(','))
         for line in inp.splitlines()
     ]
     N = len(data)
