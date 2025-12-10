@@ -17,5 +17,6 @@ def run(func: Callable):
 
     start = time()
     data = get_data(args.filename)
+    ans = func(data)
     end = time()
-    print(f"Final answer {func(data)} took {1000*(end - start)}ms")
+    print(f"Final answer {ans} took {1000*(end - start)}ms")
