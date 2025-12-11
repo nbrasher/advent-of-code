@@ -34,19 +34,15 @@ def main(inp: str) -> int:
 
     # Linearize the DAG in reverse order
     fwdcopy = deepcopy(fwd)
-    seen = set()
     q = deque(['out'])
     order = ['out']
     while q:
         sink = q.pop()
-        print(f"linearizing {sink}")
         for be in rev[sink]:
-            if be not in seen:
-                fwdcopy[be].remove(sink)
-                if len(fwdcopy[be]) == 0:
-                    q.appendleft(be)
-                    order.append(be)
-                    seen.add(be)
+            fwdcopy[be].remove(sink)
+            if len(fwdcopy[be]) == 0:
+                q.appendleft(be)
+                order.append(be)
 
     return (
         find_paths('svr', 'fft', fwd, order) 
