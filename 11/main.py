@@ -9,6 +9,8 @@ def find_paths(start, end, fwd, order):
     begin_tracking = False
     paths = defaultdict(int)
     paths[start] = 1
+
+    # Traverse the reverse-order in reverse starting with `start` node
     for i in range(len(order) - 1, -1, -1):
         if order[i] == start:
             begin_tracking = True
@@ -26,7 +28,7 @@ def main(inp: str) -> int:
     fwd = defaultdict(set)
     rev = defaultdict(set)
     for line in inp.splitlines():
-        root = line.split(':')[0]
+        root = re.findall(r'([\w]{3})\:', line)[0]
         edges = re.findall(r'\s([\w]{3})', line)
         fwd[root] = set(edges)
         for e in edges:
